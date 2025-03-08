@@ -5,7 +5,7 @@ import '../css/Signup.css';
 
 import CrickeImage from '../images/cricketsignup.png'; // Import the image
 
-import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
+// import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
 
 
 
@@ -111,7 +111,7 @@ const Signup = () => {
       </div>
     </div>
     </div>
-    </div>
+    
   );
 };
 
