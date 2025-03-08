@@ -11,12 +11,13 @@ const App = () => {
       <Routes>
         {/* Redirect to /login when the user visits the root path */}
         <Route path="/" element={<Navigate to="/login" />} />
-        
+
         {/* Route for Signup */}
         <Route path="/signup" element={<Signup />} />
 
         {/* Route for Login */}
         <Route path="/login" element={<Login />} />
+
 
         {/* Route for Dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
