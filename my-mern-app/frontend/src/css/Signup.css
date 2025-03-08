@@ -16,6 +16,14 @@
     background: url('https://source.unsplash.com/1600x900/?cricket,stadium') no-repeat center center/cover;
     background-size: cover; /* Ensure the background image covers the entire area */
   }
+  @keyframes moveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
   
   .signup-box {
     background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
