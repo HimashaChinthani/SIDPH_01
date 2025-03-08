@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link for internal navigation
 import '../css/Signup.css';
-import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
-
-
+import CrickeImage from '../images/cricketsignup.png'; // Import the image
 
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,10 +43,8 @@ const Signup = () => {
       }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
-
     } finally {
       setIsLoading(false);
-
     }
   };
 
@@ -88,13 +84,13 @@ const Signup = () => {
         </form>
 
         <div className="already-registered">
-          <p>Already have an account? <a href="/login">Login here</a></p>
+          <p>Already have an account? <Link to="/login">Login here</Link></p>
         </div>
       </div>
 
       {/* Image Section */}
       <div className="image-container">
-        <img src={CrickeImage} alt="Cricket Image" />
+        <img src={CrickeImage} alt="Cricket Image" className="signup-image" />
       </div>
     </div>
   );
