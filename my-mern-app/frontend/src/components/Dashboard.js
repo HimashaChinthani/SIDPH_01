@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Dashboard.css';  // Importing Dashboard.css from the css folder
 
 const Dashboard = () => {
   const username = localStorage.getItem('username') || 'User';

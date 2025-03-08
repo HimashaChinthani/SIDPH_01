@@ -1,50 +1,136 @@
-/* Login.css */
-
-/* General Container */
-.auth-container {
-    max-width: 400px;
-    margin: 50px auto;
+:root {
+    /* Primary Colors */
+    --primary-blue: #1E3A8A;
+    --secondary-blue: #3B82F6;
+    --dark-blue: #1E40AF;
+    --light-blue: #BFDBFE;
+    --sky-blue: #93C5FD;
+    --background-color: #F0F4FF; /* Adding a background color */
+  }
+  
+  /* General Container */
+  .auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 120px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--light-blue);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+  }
+  
+  /* Left-side Image */
+  .image {
+    flex: 1;
+    max-width: 400px;
+    animation: moveUpDown 2s ease-in-out infinite; /* Animation for image */
+  }
+  
+  .image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     border-radius: 8px;
   }
   
-  /* Heading */
-  .auth-container h2 {
+  /* Animation for image movement */
+  @keyframes moveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Right-side Form */
+  .auth-form {
+    flex: 1;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif; /* Applying the new font */
+    background-color: var(--background-color); /* Applying background color to the form */
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .auth-form h2 {
     text-align: center;
-    color: #333;
+    color: var(--primary-blue);
+    font-size: 2.5rem;  /* Adjusted size for better readability */
+    font-weight: 600;   /* Make the font slightly bolder */
+    margin-bottom: 20px;
+  }
+  
+  .auth-form p {
+    text-align: center;
+    color: var(--secondary-blue);
+    font-size: 1rem;
+    font-weight: 400;  /* Lighter weight for paragraphs */
   }
   
   /* Form Inputs */
-  .auth-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  .auth-form input {
+    width: 95%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 2px solid var(--secondary-blue);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .auth-form input:focus {
+    border-color: var(--primary-blue);
   }
   
   /* Submit Button */
-  .auth-container button {
-    padding: 10px 20px;
-    width: 100%;
-    background-color: #4CAF50;
+  .auth-form button {
+    padding: 12px 20px;
+    width: 50%;
+    margin-left: 25%;
+    background-color: var(--primary-blue);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  /* Button Hover */
-  .auth-container button:hover {
-    background-color: #45a049;
+  .auth-form button:hover {
+    background-color: var(--secondary-blue);
   }
   
-  /* Error/Success Message */
-  .message {
-    color: red;
+  /* Links and Sign Up Text */
+  .signupcontent {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    width: 100%;
+  }
+  
+  .auth-form p {
+    font-size: 0.9rem;
+    color: var(--dark-blue);
+  }
+  
+  .auth-form a {
+    margin-top: 2.5%;
+    margin-left: 8px;
+    color: var(--secondary-blue);
     font-weight: bold;
-    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .auth-form a:hover {
+    color: var(--primary-blue);
   }
   
