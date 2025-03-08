@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/Signup.css';
+import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
+
 
 
 const Signup = () => {
@@ -25,9 +27,22 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
+      // Check if the username is already registered
+      const checkUser = await axios.get(`http://localhost:5000/api/check-username/${formData.username}`);
+
+      if (checkUser.data.exists) {
+        setMessage("Username already taken. Please try another one.");
+        setIsLoading(false);
+        return;
+      }
+
+      // If the username is available, proceed with signup
       const response = await axios.post('http://localhost:5000/api/signup', formData);
       setMessage(response.data.message);
-      setTimeout(() => (window.location.href = '/login'), 2000);
+
+      setTimeout(() => {
+        window.location.href = '/login'; // Redirect to login page after successful signup
+      }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
 
@@ -71,6 +86,15 @@ const Signup = () => {
             {isLoading ? 'Signing Up...' : 'Signup'}
           </button>
         </form>
+
+        <div className="already-registered">
+          <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+      </div>
+
+      {/* Image Section */}
+      <div className="image-container">
+        <img src={CrickeImage} alt="Cricket Image" />
       </div>
     </div>
   );
