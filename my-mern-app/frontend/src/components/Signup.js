@@ -49,9 +49,10 @@ const Signup = () => {
   };
 
   return (
+    <div className="both">
     <div className="signup-container">
       <div className="signup-box">
-        <h2>Signup</h2>
+        <h1>Signup</h1>
         {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit}>
           <input
@@ -84,14 +85,16 @@ const Signup = () => {
         </form>
 
         <div className="already-registered">
-          <p>Already have an account? <Link to="/login">Login here</Link></p>
+          <h3>Already have an account? <Link to="/login">Login here</Link></h3>
         </div>
-      </div>
+      
 
       {/* Image Section */}
       <div className="image-container">
-        <img src={CrickeImage} alt="Cricket Image" className="signup-image" />
+        <img src={CrickeImage} alt="Signup" className="signup-image" />
       </div>
+    </div>
+    </div>
     </div>
   );
 };
