@@ -4,10 +4,12 @@ import '../css/Signup.css';
 import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
 
 
+
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,8 +45,10 @@ const Signup = () => {
       }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
+
     } finally {
       setIsLoading(false);
+
     }
   };
 
