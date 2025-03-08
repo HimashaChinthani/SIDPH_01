@@ -5,7 +5,7 @@ import '../css/Signup.css';
 
 import CrickeImage from '../images/cricketsignup.png'; // Import the image
 
-// import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
+
 
 
 
@@ -100,15 +100,11 @@ const Signup = () => {
       <div className="image-container">
         <img src={CrickeImage} alt="Signup" className="signup-image" />
 
-          <p>Already have an account? <a href="/login">Login here</a></p>
+          
         </div>
       </div>
 
-      {/* Image Section */}
-      <div className="image-container">
-        <img src={CrickeImage} alt="Cricket Image" />
-
-      </div>
+     
     </div>
     </div>
     
