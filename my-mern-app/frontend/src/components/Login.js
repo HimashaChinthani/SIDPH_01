@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/Login.css';  // Importing Login.css from the css folder
+import CrickeImage from '../images/cricket3.png'; // Importing the image
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -23,14 +24,25 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username" onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} />
-        <button type="submit">Login</button>
-      </form>
+    <div className="auth-container"> {/* Apply the 'auth-container' class here */}
+      
+      <div className="auth-form">
+        <h2>Login</h2>
+        {message && <p>{message}</p>}
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="username" placeholder="Username" onChange={handleChange} />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+          <button type="submit">Login</button>
+          <div className='signupcontent'>
+            <p>Do you haven't Signup yet ?</p>
+            <a href="/signup">Signup</a>
+          </div>
+        </form>
+      </div>
+
+      <div className="image">
+        <img src={CrickeImage} alt="Cricket Image" />
+      </div>
     </div>
   );
 };
