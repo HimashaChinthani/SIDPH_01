@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/Signup.css';
 
+
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,14 +23,17 @@ const Signup = () => {
     }
 
     setIsLoading(true);
+
     try {
       const response = await axios.post('http://localhost:5000/api/signup', formData);
       setMessage(response.data.message);
       setTimeout(() => (window.location.href = '/login'), 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
+
     } finally {
       setIsLoading(false);
+
     }
   };
 

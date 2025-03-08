@@ -1,0 +1,46 @@
+/* Common styles for both error and success messages */
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Error message styling */
+  .error {
+    background-color: #ffcccc;
+    color: #d8000c;
+  }
+  
+  /* Success message styling */
+  .success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  /* Icon styling */
+  .message-icon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+  
+  .success-icon {
+    color: #155724;
+  }
+  
+  .error-icon {
+    color: #d8000c;
+  }
+  
+  /* Add fade-in effect for messages */
+  .fade-in {
+    opacity: 1;
+  }
+  
