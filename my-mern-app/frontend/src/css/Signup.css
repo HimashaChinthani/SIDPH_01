@@ -1,79 +1,157 @@
 :root {
-    /* Primary Colors */
-    --primary-blue: #1E3A8A;
-    --secondary-blue: #3B82F6;
-    --dark-blue: #1E40AF;
-    --light-blue: #BFDBFE;
-    --sky-blue: #93C5FD;
+  /* Primary Colors */
+  --primary-blue: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --dark-blue: #1E40AF;
+  --light-blue: #BFDBFE;
+  --sky-blue: #93C5FD;
+}
+
+/* Signup Container */
+.signup-container {
+  display: flex;
+  flex-direction: row; /* Align content side by side */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 10%;
+}
+
+/* Signup Box */
+.signup-box {
+  background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 500px; /* Increase max-width to make the form larger */
+  width: 100%;
+  margin-right: 20px; /* Space between form and image */
+}
+
+/* Title */
+.signup-box h2 {
+  color: var(--primary-blue);
+  margin-bottom: 3rem;
+}
+
+/* Input Fields */
+.signup-box input {
+  width: 95%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 2px solid var(--secondary-blue);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.signup-box input:focus {
+  border-color: var(--secondary-blue);
+  outline: none;
+}
+
+/* Signup Button */
+.signup-box button {
+  background: var(--dark-blue);
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 40%;
+  margin-top: 10px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.signup-box button:hover {
+  background: var(--secondary-blue);
+  transform: scale(1.05);
+}
+
+/* Message */
+.message {
+  color: var(--dark-blue);
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Already Registered */
+.already-registered {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: var(--dark-blue);
+  text-align: center;
+}
+
+.already-registered a {
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+.already-registered a:hover {
+  text-decoration: underline;
+}
+
+/* Image Section */
+.image-container {
+  max-width: 600px; /* Allow image to be larger */
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents overflow */
+  position: relative;
+  animation: imageAnimation 6s ease-in-out infinite; /* Image animation */
+}
+
+/* Signup Image */
+.signup-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover; /* Ensure the image covers the area */
+  background-color: #3B82F6;
+}
+
+/* Image Animation */
+@keyframes imageAnimation {
+  0% {
+      transform: scale(1); /* Start with original size */
   }
-  
+  50% {
+      transform: scale(1.05); /* Zoom in slightly */
+  }
+  100% {
+      transform: scale(1); /* Return to original size */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
   .signup-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?cricket,stadium') no-repeat center center/cover;
-    background-size: cover; /* Ensure the background image covers the entire area */
+      flex-direction: column;
+      text-align: center;
+      max-width: 90%;
+      min-height: auto;
+      padding: 5%;
   }
-  @keyframes moveUpDown {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-  
+
   .signup-box {
-    background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
+      margin-right: 0;
+      width: 100%;
   }
-  
-  .signup-box h2 {
-    color: var(--primary-blue);
-    margin-bottom: 1rem;
+
+  .image-container {
+      max-width: 100%;
+      margin-top: 20px;
   }
-  
-  .signup-box input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid var(--light-blue);
-    border-radius: 5px;
-    font-size: 1rem;
+
+  .signup-image {
+      width: 90%;
+      max-width: 400px;
   }
-  
-  .signup-box input:focus {
-    border-color: var(--secondary-blue);
-    outline: none;
-  }
-  
-  .signup-box button {
-    background: var(--dark-blue);
-    color: white;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background 0.3s;
-  }
-  
-  .signup-box button:hover {
-    background: var(--secondary-blue);
-  }
-  
-  .message {
-    color: var(--dark-blue);
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
+}

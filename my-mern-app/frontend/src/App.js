@@ -5,19 +5,20 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 
-
-
 const App = () => {
   return (
     <Router>
       <Routes>
-
-        {/* Redirect to /login when user visits the root path */}
+        {/* Redirect to /login when the user visits the root path */}
         <Route path="/" element={<Navigate to="/login" />} />
-         <Route path="/" element={<Navigate to="/signup" />} /> 
-         <Route path="/signup" element={<Signup />} /> 
-         {/* Route for Login */}
+
+        {/* Route for Signup */}
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Route for Login */}
         <Route path="/login" element={<Login />} />
+
+
         {/* Route for Dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

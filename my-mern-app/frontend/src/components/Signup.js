@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link for internal navigation
 import '../css/Signup.css';
+
+import CrickeImage from '../images/cricketsignup.png'; // Import the image
+
+// import CrickeImage from '../images/cricketsignup.jpeg'; // Importing the image
+
+
 
 
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,22 +31,34 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
+      // Check if the username is already registered
+      const checkUser = await axios.get(`http://localhost:5000/api/check-username/${formData.username}`);
+
+      if (checkUser.data.exists) {
+        setMessage("Username already taken. Please try another one.");
+        setIsLoading(false);
+        return;
+      }
+
+      // If the username is available, proceed with signup
       const response = await axios.post('http://localhost:5000/api/signup', formData);
       setMessage(response.data.message);
-      setTimeout(() => (window.location.href = '/login'), 2000);
+
+      setTimeout(() => {
+        window.location.href = '/login'; // Redirect to login page after successful signup
+      }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
-
     } finally {
       setIsLoading(false);
-
     }
   };
 
   return (
+    <div className="both">
     <div className="signup-container">
       <div className="signup-box">
-        <h2>Signup</h2>
+        <h1>Signup</h1>
         {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit}>
           <input
@@ -71,8 +89,29 @@ const Signup = () => {
             {isLoading ? 'Signing Up...' : 'Signup'}
           </button>
         </form>
+
+        <div className="already-registered">
+
+          <h3>Already have an account? <Link to="/login">Login here</Link></h3>
+        </div>
+      
+
+      {/* Image Section */}
+      <div className="image-container">
+        <img src={CrickeImage} alt="Signup" className="signup-image" />
+
+          <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+      </div>
+
+      {/* Image Section */}
+      <div className="image-container">
+        <img src={CrickeImage} alt="Cricket Image" />
+
       </div>
     </div>
+    </div>
+    
   );
 };
 
