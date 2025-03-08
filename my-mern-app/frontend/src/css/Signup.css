@@ -12,22 +12,48 @@
 /* Signup Container */
 .signup-container {
     display: flex;
+
     flex-direction: row;
+
+    flex-direction: row; /* Align content side by side */
+
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
+
     padding: 0 10%;
 }
 
 /* Signup Box */
 .signup-box {
     background: var(--sky-blue);
+
+    padding: 0 10%; /* Add horizontal padding to make the container larger */
+  }
+  
+  .signup-box {
+    background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+
     max-width: 450px;
+
+    max-width: 500px; /* Increase max-width to make the form larger */
+    width: 100%;
+    margin-right: 20px; /* Space between form and image */
+  }
+  
+  .signup-box h2 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+  }
+  
+  .signup-box input {
+
     width: 100%;
     margin-right: 20px;
 }
@@ -79,6 +105,7 @@
     color: var(--dark-blue);
     font-weight: bold;
     margin-top: 10px;
+
 }
 
 /* Already Registered */
@@ -152,3 +179,53 @@
         max-width: 400px;
     }
 }
+
+  }
+  
+  .already-registered {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .already-registered a {
+    color: var(--primary-blue);
+    text-decoration: none;
+  }
+  
+  .already-registered a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Image Section */
+  .image-container {
+    max-width: 600px; /* Allow image to be larger */
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents overflow */
+    position: relative;
+    animation: imageAnimation 6s ease-in-out infinite; /* Image animation */
+    
+  }
+  
+  .signup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the area */
+    background-color: #3B82F6;
+  }
+  
+  @keyframes imageAnimation {
+    0% {
+      transform: scale(1); /* Start with original size */
+    }
+    50% {
+      transform: scale(1.05); /* Zoom in slightly */
+    }
+    100% {
+      transform: scale(1); /* Return to original size */
+    }
+  }
+  
