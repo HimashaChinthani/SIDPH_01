@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Import Link for internal navigation
+import '../css/Message.css';
 import '../css/Signup.css';
 
 import CrickeImage from '../images/cricketsignup.png'; // Import the image
@@ -8,7 +9,9 @@ import CrickeImage from '../images/cricketsignup.png'; // Import the image
 function Signup() {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // To manage the type of message (error/success)
   const [isLoading, setIsLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +23,9 @@ function Signup() {
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setMessage("Passwords do not match!");
+      setMessageType('error');
+      setShowMessage(true);
+      setTimeout(() => setShowMessage(false), 3000);
       return;
     }
 
@@ -41,12 +47,18 @@ function Signup() {
       });
       console.log("Response Data", response.data);
       setMessage(response.data.message);
+      setShowMessage(true); // Show message
+      localStorage.setItem('token', response.data.token);
+      setTimeout(() => setShowMessage(false), 3000); // Hide message after 3 seconds
 
       setTimeout(() => {
         window.location.href = '/login'; // Redirect to login page after successful signup
       }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
+      setMessageType('error'); // Set the message type to error
+      setShowMessage(true); // Show message
+      setTimeout(() => setShowMessage(false), 3000); // Hid
     } finally {
       setIsLoading(false);
     }
@@ -55,6 +67,14 @@ function Signup() {
   return (
     <div className="both">
     <div className="signup-container">
+      {showMessage && (
+          <div className={`message ${messageType} fade-in`}>
+            <span className={`message-icon ${messageType === 'success' ? 'success-icon' : 'error-icon'}`}>
+              {messageType === 'success' ? '✔️' : '❌'}
+            </span>
+            {message}
+          </div>
+        )}
       <div className="signup-box">
         <h1>Signup</h1>
         {message && <p className="message">{message}</p>}
