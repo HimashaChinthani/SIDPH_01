@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', formData);
+      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
       setMessage(response.data.message);
       setMessageType('success'); // Set the message type to success
       setShowMessage(true); // Show message

@@ -7,12 +7,15 @@ const router = express.Router();
 const SECRET_KEY = process.env.JWT_SECRET || 'secureconnectsecret';
 
 router.post('/signup', async (req, res) => {
+  console.log("Received Signup Request:", req.body);
   const { username, password, confirmPassword } = req.body;
 
   if (!username || !password || !confirmPassword) {
+    console.log("Missing Fields Error");
     return res.status(400).json({ message: 'All fields are required' });
   }
   if (password !== confirmPassword) {
+    console.log("Password Mismatch Error");
     return res.status(400).json({ message: 'Passwords do not match' });
   }
   if (password.length < 8 || !/[A-Z]/.test(password) || !/[!@#$%^&*]/.test(password)) {
@@ -22,13 +25,17 @@ router.post('/signup', async (req, res) => {
   try {
     const existingUser = await User.findOne({ username });
     if (existingUser) {
+
+      console.log("Username Already Exists");
       return res.status(400).json({ message: 'Username already exists' });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
+    console.log("User Registered Successfully");
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
+    console.error("Sigup error:", err);
     return res.status(500).json({ message: 'Server error' });
   }
 });
