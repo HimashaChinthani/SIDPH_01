@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3004', // or your frontend URL
+  origin: 'http://localhost:3001', // or your frontend URL
 }));
 
 

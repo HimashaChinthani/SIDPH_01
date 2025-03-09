@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link for internal navigation
+import { Link } from 'react-router-dom';
 import '../css/Signup.css';
-
-import CrickeImage from '../images/cricketsignup.png'; // Import the image
+import '../css/Message.css';  // Importing message.css for consistent styling
+import CrickeImage from '../images/cricketsignup.png';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // To manage the type of message (error/success)
+  const [showMessage, setShowMessage] = useState(false); // To control showing and hiding of messages
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -20,6 +22,9 @@ const Signup = () => {
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setMessage("Passwords do not match!");
+      setMessageType('error'); // Error message type
+      setShowMessage(true); // Show message
+      setTimeout(() => setShowMessage(false), 3000); // Hide message after 3 seconds
       return;
     }
 
@@ -31,19 +36,29 @@ const Signup = () => {
 
       if (checkUser.data.exists) {
         setMessage("Username already taken. Please try another one.");
+        setMessageType('error'); // Error message type
+        setShowMessage(true); // Show message
         setIsLoading(false);
+        setTimeout(() => setShowMessage(false), 3000); // Hide message after 3 seconds
         return;
       }
 
       // If the username is available, proceed with signup
       const response = await axios.post('http://localhost:5000/api/signup', formData);
       setMessage(response.data.message);
+      setMessageType('success'); // Success message type
+      setShowMessage(true); // Show message
 
       setTimeout(() => {
         window.location.href = '/login'; // Redirect to login page after successful signup
       }, 2000);
+      
+      setTimeout(() => setShowMessage(false), 3000); // Hide message after 3 seconds
     } catch (error) {
       setMessage(error.response?.data?.message || 'Signup failed');
+      setMessageType('error'); // Error message type
+      setShowMessage(true); // Show message
+      setTimeout(() => setShowMessage(false), 3000); // Hide message after 3 seconds
     } finally {
       setIsLoading(false);
     }
@@ -51,58 +66,60 @@ const Signup = () => {
 
   return (
     <div className="both">
-    <div className="signup-container">
-      <div className="signup-box">
-        <h1>Signup</h1>
-        {message && <p className="message">{message}</p>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? 'Signing Up...' : 'Signup'}
-          </button>
-        </form>
+      <div className="signup-container">
+        <div className="signup-box">
+          <h1>Signup</h1>
 
-        <div className="already-registered">
+          {showMessage && (
+            <div className={`message ${messageType} fade-in`}>
+              <span className={`message-icon ${messageType === 'success' ? 'success-icon' : 'error-icon'}`}>
+                {messageType === 'success' ? '✔️' : '❌'}
+              </span>
+              {message}
+            </div>
+          )}
 
-          <h3>Already have an account? <Link to="/login">Login here</Link></h3>
-        </div>
-      
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? 'Signing Up...' : 'Signup'}
+            </button>
+          </form>
 
-      {/* Image Section */}
-      <div className="image-container">
-        <img src={CrickeImage} alt="Signup" className="signup-image" />
+          <div className="already-registered">
+            <h3>Already have an account? <Link to="/login">Login here</Link></h3>
+          </div>
 
-          
+          {/* Image Section */}
+          <div className="image-container">
+            <img src={CrickeImage} alt="Signup" className="signup-image" />
+          </div>
         </div>
       </div>
-
-     
     </div>
-    </div>
-    
   );
 };
 
