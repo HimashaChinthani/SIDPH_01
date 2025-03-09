@@ -1,0 +1,68 @@
+/* Dashboard.css */
+
+/* Container to center content */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f7fb; /* Light background color */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Header styling */
+  h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  button:active {
+    background-color: #3e8e41; /* Even darker green on click */
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Create a subtle box shadow for the container */
+  .dashboard-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Styling for the 'Welcome' message */
+  .welcome-message {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  
+  
+  

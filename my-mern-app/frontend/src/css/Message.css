@@ -1,46 +1,57 @@
 /* Common styles for both error and success messages */
 .message {
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    text-align: center;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  /* Error message styling */
-  .error {
-    background-color: #ffcccc;
-    color: #d8000c;
-  }
-  
-  /* Success message styling */
-  .success {
-    background-color: #d4edda;
-    color: #155724;
-  }
-  
-  /* Icon styling */
-  .message-icon {
-    margin-right: 8px;
-    font-size: 20px;
-  }
-  
-  .success-icon {
-    color: #155724;
-  }
-  
-  .error-icon {
-    color: #d8000c;
-  }
-  
-  /* Add fade-in effect for messages */
-  .fade-in {
-    opacity: 1;
-  }
-  
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  position: fixed; /* Position it fixed at the top of the page */
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Error message styling */
+.error {
+  background-color: #ffcccc;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+}
+
+/* Success message styling */
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #155724;
+}
+
+/* Icon styling */
+.message-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.success-icon {
+  color: #155724;
+}
+
+.error-icon {
+  color: #d8000c;
+}
+
+/* Add fade-in effect for messages */
+.fade-in {
+  opacity: 1;
+}
+
+/* Add some space between the form and messages */
+.signup-container, .auth-container {
+  margin-top: 60px;
+}
