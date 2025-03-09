@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Dashboard.css';  // Importing Dashboard.css from the css folder
+import '../css/Dashboard.css';
 
 const Dashboard = () => {
   const username = localStorage.getItem('username') || 'User';
@@ -11,9 +11,11 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <h2>Welcome, {username}!</h2>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard-container">
+      <div className="dashboard-box">
+        <h2 className="welcome-message">Welcome, {username}!</h2>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };
