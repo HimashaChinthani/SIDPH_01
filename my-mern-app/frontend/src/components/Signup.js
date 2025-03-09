@@ -5,11 +5,6 @@ import '../css/Signup.css';
 
 import CrickeImage from '../images/cricketsignup.png'; // Import the image
 
-
-
-
-
-
 const Signup = () => {
   const [formData, setFormData] = useState({ username: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
